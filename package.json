@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --runInBand",
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "prisma": "npx prisma generate --schema prisma/schema.postgres.prisma & npx prisma generate --schema prisma/schema.mongodb.prisma"
   },
   "repository": {
     "type": "git",
