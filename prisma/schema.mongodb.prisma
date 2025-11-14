@@ -16,11 +16,11 @@ datasource db {
 model Profiles {
   id String @id @map("_id")
   telephone String? @unique
-  card Json? @default("{\n\"name\": \"John Doe\",\n\"number\": \"XXXX XXXX XXXX XXXX\",\n\"date\": "XX/XX\"\n}")
+  card Json?
 }
 
 model Specifications {
   id String @id @map("_id")
-  tags String[]?
-  config Json? @default("{\n\"os\": \"Windows 11\",\n\"ram\": \"X Go\",\n\"space\": "X Go\"\n}")
+  tags String[]
+  config Json?
 }

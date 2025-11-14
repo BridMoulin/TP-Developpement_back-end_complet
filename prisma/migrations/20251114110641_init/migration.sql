@@ -4,7 +4,7 @@ CREATE TABLE "User" (
     "name" TEXT NOT NULL,
     "mail" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "wallet" TEXT NOT NULL,
+    "wallet" DOUBLE PRECISION NOT NULL DEFAULT 0,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
