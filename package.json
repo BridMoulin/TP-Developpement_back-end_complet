@@ -6,7 +6,9 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --runInBand",
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "prisma:postgres": "npx prisma migrate dev --schema=prisma/schema.postgres.prisma --name init",
+    "prisma:mongodb": "npx prisma db push --schema=prisma/schema.mongodb.prisma"
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,7 @@
     "morgan": "^1.10.1",
     "pg": "^8.16.3",
     "prisma": "^6.19.0",
+    "sed": "^0.0.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   },
