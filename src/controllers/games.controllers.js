@@ -44,8 +44,28 @@ export async function listGames(req, res) {
     res.json(games);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Cannot list games" });
+    res.status(404).json({ error: "Games not found" });
   }
+}
+
+// READ : GET USERS
+export async function listUsers(req, res) {
+  const { id } = req.params;                        // Cherche le paramettre ID dans la requette api
+  const user = await prisma.user.findMany({        // Cherche plusieurs jeux
+    where: { game: { id: Number(id) } },           // Condition qui dit l'utilisateur possède l'ID en parametre 
+  });
+  if (!reviews) return res.status(404).json({ error: "Reviews not found" });
+  res.json(reviews);
+}
+
+// READ : GET REVIEW
+export async function listReviews(req, res) {
+  const { id } = req.params;
+  const reviews = await prisma.review.findMany({
+    where: { gameId: Number(id) },
+  });
+  if (!reviews) return res.status(404).json({ error: "Reviews not found" });
+  res.json(reviews);
 }
 
 // READ ONE : GET /api/games/:id
@@ -64,7 +84,7 @@ export async function getGame(req, res) {
     res.json(game);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Cannot get game" });
+    res.status(404).json({ error: "Game not found" });
   }
 }
 

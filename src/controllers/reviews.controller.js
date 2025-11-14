@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 // CREATE : POST /api/reviews
 export async function createReview(req, res) {
-  const { recommended, text, language, userId, gameId } = req.body;
+  const { recommended, text, language, authorId, gameId } = req.body;
 
   try {
     const review = await prisma.review.create({
@@ -13,7 +13,7 @@ export async function createReview(req, res) {
         recommended,
         text,
         language,
-        userId,
+        authorId,
         gameId,
       },
       include: {
@@ -44,72 +44,6 @@ export async function listReviews(req, res) {
     res.json(reviews);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Cannot list reviews" });
-  }
-}
-
-// READ ONE : GET /api/reviews/:id
-export async function getReview(req, res) {
-  const { id } = req.params;
-
-  try {
-    const review = await prisma.review.findUnique({
-      where: { id: Number(id) },
-      include: {
-        user: true,
-        game: true,
-      },
-    });
-
-    if (!review) {
-      return res.status(404).json({ error: "Review not found" });
-    }
-
-    res.json(review);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Cannot get review" });
-  }
-}
-
-// UPDATE : PUT /api/reviews/:id
-export async function updateReview(req, res) {
-  const { id } = req.params;
-  const { recommended, text, language } = req.body;
-
-  try {
-    const review = await prisma.review.update({
-      where: { id: Number(id) },
-      data: {
-        recommended,
-        text,
-        language,
-      },
-      include: {
-        user: true,
-        game: true,
-      },
-    });
-
-    res.json(review);
-  } catch (err) {
-    console.error(err);
-    res.status(404).json({ error: "Review not found" });
-  }
-}
-
-// DELETE : DELETE /api/reviews/:id
-export async function deleteReview(req, res) {
-  const { id } = req.params;
-
-  try {
-    await prisma.review.delete({
-      where: { id: Number(id) },
-    });
-
-    res.status(204).end();
-  } catch (err) {
-    console.error(err);
-    res.status(404).json({ error: "Review not found" });
+    res.status(404).json({ error: "Reviews not found" });
   }
 }
