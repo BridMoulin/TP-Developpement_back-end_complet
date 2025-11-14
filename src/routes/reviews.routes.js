@@ -16,3 +16,5 @@ const router = Router();
 */
 router.get("/", listReviews);
 router.post("/", createReview);
+
+export default router;

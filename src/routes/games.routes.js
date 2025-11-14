@@ -51,3 +51,5 @@ router.get("/:id/users", listUsers);
 *         summary: Get all reviews by id
 */
 router.get("/:id/reviews", listReviews);
+
+export default router;

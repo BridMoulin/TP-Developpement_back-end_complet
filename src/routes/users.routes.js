@@ -31,22 +31,22 @@ router.post("/", createUser);
 * /api/users/{id}:
 *     get:
 *         summary: Get user by id
-*     put:
+*     patch:
 *         summary: Update user
 *     delete:
 *         summary: Delete user
 */
 router.get("/:id", getUser);
-router.put("/:id", updateUser);
+router.patch("/:id", updateUser);
 router.delete("/:id", deleteUser);
 
 /**
 * @openapi
 * /api/user/{id}/wallet:
-*     put:
+*     patch:
 *         summary: Update user's wallet
 */
-router.put("/:id/wallet", updateWallet);
+router.patch("/:id/wallet", updateWallet);
 
 /**
 * @openapi

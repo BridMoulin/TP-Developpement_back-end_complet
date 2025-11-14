@@ -90,6 +90,21 @@ export async function updateWallet(req, res) {
   }
 }
 
+// UPDATE REVIEW
+export async function updateReview(req, res) {
+  const { authorId, gameId } = req.params;
+  const { recommended, text, language, } = req.body
+  try {
+    const review = await prisma.review.update({
+      where: { AND: [{ authorId: Number(authorId) }, { gameId: Number(gameId) }] },
+      data: { recommended, text, language, },
+    });
+    res.json(review);
+  } catch (err) {
+    res.status(404).json({ error: "Review not found" });
+  }
+}
+
 // DELETE
 export async function deleteUser(req, res) {
   const { id } = req.params;
